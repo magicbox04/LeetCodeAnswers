@@ -1,7 +1,6 @@
-﻿namespace LeetCodeAnswers;
-
-public class threesum
-{
+﻿namespace LeetCodeAnswers._15_3_Sum;
+// https://leetcode.com/problems/3sum/
+public class Solution {
     public IList<IList<int>> ThreeSum(int[] nums)
     {
         nums.Sort();
