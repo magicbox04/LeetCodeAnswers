@@ -1,24 +1,24 @@
 ﻿namespace LeetCodeAnswers;
 
 public class Solution {
-    public int MaxProfit(int[] prices)
+    public int LengthOfLongestSubstring(string s)
     {
-        int minIndex = 0;
-        int maxProfit = 0;
+        int [] lastIndex = new int[128];
+        int left = 0;
+        int maxLength = 0;
 
-        for (int i = 0; i < prices.Length; i++)
+        for (int right = 0; right < s.Length; right++)
         {
-            if (maxProfit < prices[i] - prices[minIndex])
+            if (lastIndex[s[right]] > left)
             {
-                maxProfit = prices[i] - prices[minIndex];
+                left =  lastIndex[s[right]]; 
             }
-            if (prices[i] < prices[minIndex])
-            {
-                minIndex = i;
-            }
-            
+
+            lastIndex[s[right]] = right;
+            maxLength = Math.Max(maxLength, right - left + 1);
         }
-        return maxProfit;
+
+        return maxLength;
     }
     
 }
