@@ -1,0 +1,68 @@
+## .NET / Visual Studio 기본 무시 파일
+
+# 빌드 결과물
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww]in32/
+[Aa]RM/
+[Aa]RM64/
+build/
+bld/
+
+# Visual Studio 캐시/옵션 파일
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+# 테스트 결과
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+
+# 게시(publish) 결과물
+**/[Pp]ublish/
+*.Publish.xml
+
+# 사용자 로컬 설정
+*.pubxml
+*.publishproj
+appsettings.Development.json
+secrets.json
+
+# 로그 파일
+*.log
+
+# ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# OS 관련
+.DS_Store
+Thumbs.db
+
+# 환경 변수 / 민감 정보
+.env
+*.env.local
