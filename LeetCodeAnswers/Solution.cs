@@ -1,5 +1,5 @@
-﻿namespace LeetCodeAnswers._121_Best_Time_to_Buy_and_Sell_Stock;
-// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+﻿namespace LeetCodeAnswers;
+
 public class Solution {
     public int MaxProfit(int[] prices)
     {
@@ -19,5 +19,15 @@ public class Solution {
             
         }
         return maxProfit;
+    }
+    
+}
+
+class Program {
+    static void Main(string[] args) {
+        Solution sol = new Solution();
+        int[] s = [1,2,3,4];
+        
+        Console.WriteLine((s));
     }
 }
