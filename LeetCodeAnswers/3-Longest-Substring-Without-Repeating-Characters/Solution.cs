@@ -14,7 +14,7 @@ public class Solution {
                 left =  lastIndex[s[right]]; 
             }
 
-            lastIndex[s[right]] = right;
+            lastIndex[s[right]] = right + 1;
             maxLength = Math.Max(maxLength, right - left + 1);
         }
 
