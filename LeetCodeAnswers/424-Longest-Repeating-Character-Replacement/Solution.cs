@@ -3,28 +3,23 @@
 public class Solution {
     public int CharacterReplacement(string s, int k)
     {
-        Dictionary<char, int> dict = new Dictionary<char, int>();
         int left = 0;
+        int maxFreq = 0;
         int maxLength = 0;
-        int maxCount = 0;
+        
+        int[] alphabet = new int[26];
+
         for (int right = 0; right < s.Length; right++)
         {
-            if (!dict.ContainsKey(s[right]))
+            alphabet[s[right]-'A']++;
+            maxFreq = Math.Max(maxFreq, alphabet[s[right] -'A']);
+
+            while ((right - left + 1) - maxFreq > k)
             {
-                dict.Add(s[right], 0);
-            }
-            dict[s[right]]++;
-            maxCount = Math.Max(maxCount, dict[s[right]]);
-            while ((right - left) - maxCount >= k)
-            {
-                dict[s[left]]--;
+                alphabet[s[left] - 'A']--;
                 left++;
             }
-
-            if (right - left + 1 > maxLength)
-            {
-                maxLength = right - left + 1;
-            }
+            maxLength = Math.Max(maxLength, right - left + 1);
         }
 
         return maxLength;

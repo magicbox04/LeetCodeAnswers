@@ -11,41 +11,28 @@ public class ListNode {
 }
 
 public class Solution {
-    public void ReorderList(ListNode head)
+    public int CharacterReplacement(string s, int k)
     {
-        ListNode slow = head;
-        ListNode fast = head;
+        int left = 0;
+        int maxFreq = 0;
+        int maxLength = 0;
+        
+        int[] alphabet = new int[26];
 
-        while (fast != null && fast.next != null)
+        for (int right = 0; right < s.Length; right++)
         {
-            slow = slow.next;
-            fast = fast.next.next;
+            alphabet[s[right]-'A']++;
+            maxFreq = Math.Max(maxFreq, alphabet[s[right] -'A']);
+
+            while ((right - left + 1) - maxFreq > k)
+            {
+                alphabet[s[left] - 'A']--;
+                left++;
+            }
+            maxLength = Math.Max(maxLength, right - left + 1);
         }
 
-        ListNode midpoint = slow.next;
-        ListNode prev = null;
-        slow.next = null;
-
-        while (midpoint != null)
-        {
-            ListNode temp = midpoint.next;
-            midpoint.next = prev;
-            prev = midpoint;
-            midpoint = temp;
-        }
-
-        ListNode secondHead = prev;
-        while (secondHead != null && head != null)
-        {
-            ListNode temp1 = head.next;
-            ListNode temp2 = secondHead.next;
-
-            head.next = secondHead;
-            secondHead.next = temp1;
-
-            head = temp1;
-            secondHead = temp2;
-        }
+        return maxLength;
     }
 }
 
