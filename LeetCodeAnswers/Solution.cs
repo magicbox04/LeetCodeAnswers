@@ -21,10 +21,11 @@ public class Solution {
             slow = slow.next;
             fast = fast.next.next;
         }
-        
+
         ListNode midpoint = slow.next;
-        slow.next = null;
         ListNode prev = null;
+        slow.next = null;
+
         while (midpoint != null)
         {
             ListNode temp = midpoint.next;
@@ -33,14 +34,17 @@ public class Solution {
             midpoint = temp;
         }
 
-        while (head != null && prev != null)
+        ListNode secondHead = prev;
+        while (secondHead != null && head != null)
         {
             ListNode temp1 = head.next;
-            ListNode temp2 = prev.next;
-            head.next = prev;
-            prev.next = temp1;
-            head = temp1; 
-            prev = temp2;
+            ListNode temp2 = secondHead.next;
+
+            head.next = secondHead;
+            secondHead.next = temp1;
+
+            head = temp1;
+            secondHead = temp2;
         }
     }
 }
