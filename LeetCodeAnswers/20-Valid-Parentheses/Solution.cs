@@ -1,14 +1,5 @@
-﻿using System.Data;
-
-namespace LeetCodeAnswers;
-public class ListNode {
-    public int val;
-    public ListNode next;
-    public ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
+﻿namespace LeetCodeAnswers._20_Valid_Parentheses;
+// https://leetcode.com/problems/valid-parentheses/description/
 
 public class Solution {
     public bool IsValid(string s) {
@@ -38,14 +29,5 @@ public class Solution {
         }
       
         return stack.Count == 0;
-    }
-}
-
-class Program {
-    static void Main(string[] args) {
-        Solution sol = new Solution();
-        int[] s = [1,2,3,4];
-        
-        Console.WriteLine((s));
     }
 }
