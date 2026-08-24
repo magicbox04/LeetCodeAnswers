@@ -13,37 +13,34 @@ public class ListNode {
 public class Solution {
     public void ReorderList(ListNode head)
     {
-        if (head == null || head.next == null) return;
+        ListNode slow = head;
+        ListNode fast = head;
 
-        ListNode slow = head, fast = head;
-        while (fast.next != null && fast.next.next != null)
+        while (fast != null && fast.next != null)
         {
             slow = slow.next;
             fast = fast.next.next;
         }
-
-        ListNode secondHead = slow.next;
+        
+        ListNode midpoint = slow.next;
         slow.next = null;
-        ListNode prev = null, curr = secondHead;
-        while (curr != null)
+        ListNode prev = null;
+        while (midpoint != null)
         {
-            ListNode temp = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = temp;
+            ListNode temp = midpoint.next;
+            midpoint.next = prev;
+            prev = midpoint;
+            midpoint = temp;
         }
 
-        ListNode first = head, second = prev;
-        while (second != null)
+        while (head != null && prev != null)
         {
-            ListNode temp1 = first.next;
-            ListNode temp2 = second.next;
-
-            first.next = second;
-            second.next = temp1;
-
-            first = temp1;
-            second = temp2;
+            ListNode temp1 = head.next;
+            ListNode temp2 = prev.next;
+            head.next = prev;
+            prev.next = temp1;
+            head = temp1; 
+            prev = temp2;
         }
     }
 }

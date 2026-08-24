@@ -1,26 +1,48 @@
-﻿namespace LeetCodeAnswers;
+﻿using System.Data;
+
+namespace LeetCodeAnswers;
+public class ListNode {
+    public int val;
+    public ListNode next;
+    public ListNode(int x) {
+        val = x;
+        next = null;
+    }
+}
 
 public class Solution {
-    public int LengthOfLongestSubstring(string s)
+    public void ReorderList(ListNode head)
     {
-        int [] lastIndex = new int[128];
-        int left = 0;
-        int maxLength = 0;
+        ListNode slow = head;
+        ListNode fast = head;
 
-        for (int right = 0; right < s.Length; right++)
+        while (fast != null && fast.next != null)
         {
-            if (lastIndex[s[right]] > left)
-            {
-                left =  lastIndex[s[right]]; 
-            }
-
-            lastIndex[s[right]] = right;
-            maxLength = Math.Max(maxLength, right - left + 1);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        ListNode midpoint = slow.next;
+        slow.next = null;
+        ListNode prev = null;
+        while (midpoint != null)
+        {
+            ListNode temp = midpoint.next;
+            midpoint.next = prev;
+            prev = midpoint;
+            midpoint = temp;
         }
 
-        return maxLength;
+        while (head != null && prev != null)
+        {
+            ListNode temp1 = head.next;
+            ListNode temp2 = prev.next;
+            head.next = prev;
+            prev.next = temp1;
+            head = temp1; 
+            prev = temp2;
+        }
     }
-    
 }
 
 class Program {
