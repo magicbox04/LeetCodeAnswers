@@ -3,42 +3,38 @@
 public class Solution
 {
     public int EvalRPN(string[] tokens) {
-        Stack<string> stack = new Stack<string>();
-        
-        for (int i =  0; i < tokens.Length; i++)
+        Stack<int> stack = new Stack<int>();
+
+        foreach (var token in tokens)
         {
-            if (tokens[i].Equals("+"))
+            switch (token)
             {
-                int a = int.Parse(stack.Pop());
-                int b = int.Parse(stack.Pop());
-                stack.Push((a + b).ToString());
+                case "+":
+                {
+                    int a = stack.Pop(), b = stack.Pop(); stack.Push(b + a); 
+                    break;
+                }
+                case "-":
+                {
+                    int a = stack.Pop(), b = stack.Pop(); stack.Push(b - a); 
+                    break;
+                }
+                case "*":
+                {
+                    int a = stack.Pop(), b = stack.Pop(); stack.Push(b * a); 
+                    break;
+                }
+                case "/":
+                {
+                    int a = stack.Pop(), b = stack.Pop(); stack.Push(b / a); 
+                    break;
+                }
+                default:
+                    stack.Push(int.Parse(token));
+                    break;
             }
-            else if (tokens[i].Equals("-"))
-            {
-                int a = int.Parse(stack.Pop());
-                int b = int.Parse(stack.Pop());
-                stack.Push((a - b).ToString());
-            }
-            else if (tokens[i].Equals("*"))
-            {
-                int a = int.Parse(stack.Pop());
-                int b = int.Parse(stack.Pop());
-                stack.Push((a * b).ToString());
-            }
-            else if (tokens[i].Equals("/"))
-            {
-                int a = int.Parse(stack.Pop());
-                int b = int.Parse(stack.Pop());
-                stack.Push((b / a).ToString());
-            }
-            else
-            {
-                stack.Push(tokens[i]);
-            }
-            
         }
 
-        int.TryParse(stack.Peek(), out int output);
-        return output;
+        return stack.Pop();
     }
 }
