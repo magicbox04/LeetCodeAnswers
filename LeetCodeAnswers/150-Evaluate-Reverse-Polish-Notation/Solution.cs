@@ -1,16 +1,7 @@
-﻿using System.Data;
-
-namespace LeetCodeAnswers;
-public class ListNode {
-    public int val;
-    public ListNode next;
-    public ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
-public class Solution {
+﻿namespace LeetCodeAnswers._150_Evaluate_Reverse_Polish_Notation;
+// https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
+public class Solution
+{
     public int EvalRPN(string[] tokens) {
         Stack<string> stack = new Stack<string>();
         
@@ -49,14 +40,5 @@ public class Solution {
 
         int.TryParse(stack.Peek(), out int output);
         return output;
-    }
-}
-
-class Program {
-    static void Main(string[] args) {
-        Solution sol = new Solution();
-        String[] tokens = ["4","13","5","/","+"];
-        
-        Console.WriteLine(sol.EvalRPN(tokens));
     }
 }
