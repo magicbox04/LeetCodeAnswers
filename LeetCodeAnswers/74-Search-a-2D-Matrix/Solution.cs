@@ -1,16 +1,7 @@
-﻿using System.Data;
-
-namespace LeetCodeAnswers;
-public class ListNode {
-    public int val;
-    public ListNode next;
-    public ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
-public class Solution {
+﻿namespace LeetCodeAnswers._74_Search_a_2D_Matrix;
+// https://leetcode.com/problems/search-a-2d-matrix/
+public class Solution
+{
     public bool SearchMatrix(int[][] matrix, int target)
     {
         int leftFirst = 0;
@@ -54,14 +45,5 @@ public class Solution {
         }
 
         return false;
-    }
-}
-
-class Program {
-    static void Main(string[] args) {
-        Solution sol = new Solution();
-        int[] nums = [5];
-        
-        Console.WriteLine(sol.Search(nums, 5));
     }
 }
