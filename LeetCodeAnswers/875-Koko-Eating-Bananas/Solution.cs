@@ -1,16 +1,7 @@
-﻿using System.Data;
+﻿namespace LeetCodeAnswers._875_Koko_Eating_Bananas;
 
-namespace LeetCodeAnswers;
-public class ListNode {
-    public int val;
-    public ListNode next;
-    public ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
-
-public class Solution {
+public class Solution
+{
     public int MinEatingSpeed(int[] piles, int h) {
         int left = 1;
         int right = piles.Max();
@@ -43,14 +34,5 @@ public class Solution {
         }
 
         return hours <= h;
-    }
-}
-
-class Program {
-    static void Main(string[] args) {
-        Solution sol = new Solution();
-        int[] nums = [1,8,6,2,5,4,8,3,7];
-        
-        Console.WriteLine(sol.MaxArea(nums));
     }
 }

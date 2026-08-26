@@ -3,55 +3,49 @@
 public class Solution {
     public IList<IList<int>> ThreeSum(int[] nums)
     {
-        nums.Sort();
         IList<IList<int>> result = new List<IList<int>>();
-
-        for (int i = 0; i < nums.Length-2; i++)
+        nums.Sort();
+        for (int target = 0; target < nums.Length - 2; target++)
         {
-            if (i > 0 && nums[i] == nums[i - 1])
+            if (target > 0 && nums[target] == nums[target - 1])
             {
                 continue;
             }
 
-            if (nums[i] > 0)
+            if (nums[target] > 0)
             {
                 break;
             }
             
-            int left = i + 1;
-            int right = nums.Length - 1;
-
+            int left = target + 1;
+            int right =  nums.Length - 1;
             while (left < right)
             {
-                if (nums[i] + nums[left] + nums[right] == 0)
+                if (nums[target] + nums[left] + nums[right] == 0)
                 {
-                    result.Add(new List<int> { nums[i], nums[left], nums[right] });                    
+                    result.Add(new List<int> { nums[target], nums[left], nums[right] });
                     left++;
                     right--;
-                    
-                    while (left < right && nums[left] == nums[left-1])
+                    while (left < right && nums[left - 1] == nums[left])
                     {
                         left++;
                     }
-
-                    while (left < right && nums[right] == nums[right+1])
+                    while (left < right && nums[right + 1] == nums[right])
                     {
                         right--;
                     }
                 }
-                else if (nums[i] + nums[left] + nums[right] < 0)
+                else if (left < right && nums[target] + nums[left] + nums[right] < 0)
                 {
                     left++;
+                    
                 }
                 else
                 {
-                    right--;
+                    right--; 
                 }
-
-                
             }
         }
-
         return result;
     }
 }
