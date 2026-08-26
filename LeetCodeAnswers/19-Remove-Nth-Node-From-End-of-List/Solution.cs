@@ -1,14 +1,4 @@
-﻿using System.Data;
-
-namespace LeetCodeAnswers;
-public class ListNode {
-    public int val;
-    public ListNode next;
-    public ListNode(int x) {
-        val = x;
-        next = null;
-    }
-}
+﻿namespace LeetCodeAnswers._19_Remove_Nth_Node_From_End_of_List;
 
 public class Solution {
     public ListNode RemoveNthFromEnd(ListNode head, int n)
@@ -59,14 +49,5 @@ public class Solution {
             }
             return prev;
         }
-    }
-}
-
-class Program {
-    static void Main(string[] args) {
-        Solution sol = new Solution();
-        int[] nums = [1,8,6,2,5,4,8,3,7];
-        
-        Console.WriteLine(sol.MaxArea(nums));
     }
 }
