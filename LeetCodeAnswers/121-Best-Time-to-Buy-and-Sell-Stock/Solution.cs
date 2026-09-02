@@ -3,20 +3,22 @@
 public class Solution {
     public int MaxProfit(int[] prices)
     {
-        int minIndex = 0;
         int maxProfit = 0;
+        int lowestPriceIndex = 0;
+        int lowesterPrice = int.MaxValue;
 
         for (int i = 0; i < prices.Length; i++)
         {
-            if (maxProfit < prices[i] - prices[minIndex])
+            if (prices[i] < lowesterPrice)
             {
-                maxProfit = prices[i] - prices[minIndex];
-            }
-            if (prices[i] < prices[minIndex])
-            {
-                minIndex = i;
+                lowesterPrice = prices[i];
+                lowestPriceIndex = i;
             }
             
+            if (prices[i] - lowesterPrice > maxProfit)
+            {
+                maxProfit = prices[i] - lowesterPrice;
+            }
         }
         return maxProfit;
     }
