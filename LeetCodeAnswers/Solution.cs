@@ -11,62 +11,54 @@ public class ListNode {
 }
 
 public class Solution {
-    public ListNode RemoveNthFromEnd(ListNode head, int n)
-    {
-        ListNode prev = null;
-        while  (head != null) {
-            ListNode temp = head.next;
-            head.next = prev;
-            prev = head;
-            head = temp;
-        }
+    public bool CheckInclusion(string s1, string s2) {
+        if (s1.Length > s2.Length)
+            return false;
         
-        ListNode newHead = prev;
-        ListNode newPrev = null;
-        for (int i = 0; i < n - 1; i++)
+        int [] s1Freq = new int[26];
+        foreach (char c in s1)
         {
-            newPrev = newHead;
-            newHead = newHead.next;
+            s1Freq[c - 'a']++;
         }
 
-        if (newPrev != null)
+        int left = 0;
+        int right = s1.Length;
+        int [] s2SubStringFreq = new int[26];
+        foreach (char c in s2[left..right])
         {
-            newPrev.next = newHead.next;
-            head = prev;
-            prev = null;
-            while  (head != null) {
-                ListNode temp = head.next;
-                head.next = prev;
-                prev = head;
-                head = temp;
-            }
+            s2SubStringFreq[c - 'a']++;
+        }
         
-            return prev;
-        }
-        else
+        while (right <= s2.Length)
         {
-            ListNode nexHead = newHead.next;
-            newHead.next = newPrev;
-            newHead = nexHead;
-            
-            head = newHead;
-            prev = null;
-            while  (head != null) {
-                ListNode temp = head.next;
-                head.next = prev;
-                prev = head;
-                head = temp;
+            if (s1Freq.SequenceEqual( s2SubStringFreq))
+            {
+                return true;
             }
-            return prev;
+
+            s2SubStringFreq[s2[left] - 'a']--;
+            left++;
+            right++;
+            if (right <= s2.Length)
+                s2SubStringFreq[s2[right-1] - 'a']++;
+
         }
+
+        return false;
     }
+    
 }
 
 class Program {
     static void Main(string[] args) {
         Solution sol = new Solution();
-        int[] nums = [1,8,6,2,5,4,8,3,7];
+        int[] nums = [1,2,3,4,5,6,7,8,9,10];
+        int[][] matrix = [[1]]; 
+        String s1 = "adc";
+        String s2 = "dcda";
+        List<string> strs = new List<string>(["Hello","World"]);
         
-        Console.WriteLine(sol.MaxArea(nums));
+        
+        Console.WriteLine(sol.CheckInclusion(s1, s2));
     }
 }
