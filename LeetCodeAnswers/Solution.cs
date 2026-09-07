@@ -4,16 +4,26 @@ using Utilities;
 namespace LeetCodeAnswers;
 
 public class Solution {
-    public int MaxDepth(TreeNode root)
-    {
-        if (root == null)
+    public bool IsSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null)
         {
-            return 0;
+            return true;
+        }
+        else if ((p == null && q != null) || (p != null && q == null))
+        {
+            return false;
         }
         else
         {
-            return Math.Max(MaxDepth(root.left) + 1, MaxDepth(root.right) + 1);
+            if (p.val == q.val)
+            {
+                bool firstVal  = IsSameTree(p.left, q.left);
+                bool secondVal = IsSameTree(p.right, q.right);
+                
+                return firstVal && secondVal;
+            }
         }
+        return false;
     }
 }
 
