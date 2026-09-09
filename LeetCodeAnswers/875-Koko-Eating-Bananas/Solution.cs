@@ -2,37 +2,35 @@
 
 public class Solution
 {
-    public int MinEatingSpeed(int[] piles, int h) {
+    public int MinEatingSpeed(int[] piles, int h)
+    {
         int left = 1;
         int right = piles.Max();
-        int answer = right;
-        
-        while(left <= right)
-        {
-            int midpoint = (left + right) / 2;
 
-            if (CanFinish(piles, h, midpoint))
+        while (left < right)
+        {
+            int midPoint = left + (right - left) / 2;
+            if (canEat(piles, h, midPoint))
             {
-                answer = midpoint;
-                right = midpoint - 1;
+                right = midPoint;
             }
             else
             {
-                left = midpoint + 1;
+                left = midPoint + 1;
             }
         }
 
-        return answer;
+        return left;
     }
 
-    private bool CanFinish(int[] piles, int h, int midpoint)
+    public bool canEat(int[] piles, int expectedDay, int eatingSpeed)
     {
-        int hours = 0;
-        foreach (int pile in piles)
+        int days = 0;
+        for (int i = 0; i < piles.Length; i++)
         {
-            hours += (pile + midpoint - 1) / midpoint;
+            days += (piles[i] + eatingSpeed - 1) / eatingSpeed;
         }
 
-        return hours <= h;
+        return days <= expectedDay;
     }
 }
