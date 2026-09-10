@@ -4,20 +4,20 @@ namespace Utilities._238_Product_of_Array_Except_Self;
 public class Solution
 {
     public int[] ProductExceptSelf(int[] nums) {
-        int n = nums.Length;
-        int[] answer = new int[n];
-
-        answer[0] = 1;
-        for (int i = 1; i < n; i++) {
-            answer[i] = answer[i - 1] * nums[i - 1];
+        int [] result = new int[nums.Length];
+        result[0] = 1;
+        for (int i = 1; i < nums.Length; i++)
+        {
+            result[i] = result[i - 1] * nums[i - 1];
         }
-
+        
         int rightProduct = 1;
-        for (int i = n - 1; i >= 0; i--) {
-            answer[i] *= rightProduct;
-            rightProduct *= nums[i];
+        for (int i = nums.Length - 2; i >= 0; i--)
+        {
+            result[i] *= rightProduct * nums[i + 1];
+            rightProduct *= nums[i + 1];
         }
 
-        return answer;
+        return result;
     }
 }
