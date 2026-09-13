@@ -1,5 +1,5 @@
 ﻿namespace LeetCodeAnswers._36_Valid_Sudoku;
-
+// https://leetcode.com/problems/valid-sudoku/description/
 public class Solution
 {
     public bool IsValidSudoku(char[][] board) {
