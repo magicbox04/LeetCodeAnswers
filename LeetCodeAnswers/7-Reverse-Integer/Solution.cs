@@ -4,31 +4,19 @@ public class Solution
 {
     public int Reverse(int x)
     {
-        string xStr = x.ToString();
-        string subStrResult = "";
-        string result = "";
-        if (xStr.Length != 0 && xStr[0] == '-')
-        {
-            subStrResult = xStr.Substring(1,  xStr.Length - 1);
-            result = "-";
-        }
-        else
-        {
-            subStrResult = xStr;
-        }
-        for (int i = subStrResult.Length - 1; i >= 0; i--)
-        {
-            result += subStrResult[i];
-        }
+        long result = 0;
 
-        try
+        while (x != 0)
         {
-            int returnValue = int.Parse(result);
-            return returnValue;
+            int digit = x % 10;
+            x /= 10;
+            result = result * 10 + digit;
+
+            if (result < int.MinValue || result > int.MaxValue)
+            {
+                return 0;
+            }
         }
-        catch (OverflowException exception)
-        {
-            return 0;
-        }
+        return (int) result;
     }
 }
